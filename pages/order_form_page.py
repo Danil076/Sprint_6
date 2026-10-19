@@ -3,6 +3,7 @@ from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.common.keys import Keys
 from locators.order_form_locators import OrderFormLocators
 from selenium.webdriver.support import expected_conditions as EC
+import time
 import allure
 
 
@@ -55,10 +56,7 @@ class OrderFormPage(BasePage):
     def select_black_color(self):
 
         # Выбирает чекбокс чёрного цвета
-        checkbox = self.wait.until(
-            EC.presence_of_element_located(OrderFormLocators.COLOR_BLACK_CHECKBOX)
-        )
-        self.driver.execute_script("arguments[0].click();", checkbox)
+        self.click_element_by_js(OrderFormLocators.COLOR_BLACK_CHECKBOX)
 
     @allure.step("Заполнить комментарий курьеру: {comment}")
     def fill_comment(self, comment):
